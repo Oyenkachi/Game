@@ -4,7 +4,7 @@ const PLAYER_O = "O";
 let turn = PLAYER_X;
 
 const boardState = Array(tile.length);
-boardState.fill(null);
+boardState.fill(null); 
 
 //Elements
 const strike = document.getElementById("strike");
