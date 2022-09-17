@@ -32,7 +32,7 @@ h1{
 
 .strike{
     position: absolute;
-    background-color: black;
+    background-color: aqua;
 }
 
 .strike-row-1{
@@ -72,7 +72,7 @@ h1{
 }
 .strike-diagonal-1 {
     width: 90%;
-    height: 4px;
+    height: 6px;
     top: 50%;
     left: 5%;
     transform: skewY(45.8deg);
@@ -80,7 +80,7 @@ h1{
 
 .strike-diagonal-2 {
     width: 90%;
-    height: 4px;
+    height: 6px;
     top: 48%;
     left: 5%;
     transform: skewY(-45deg);
@@ -100,9 +100,10 @@ h2{
 }
 button{
     background-color: transparent;
-    color: black;
+    color: royalblue;
     text-align: center;
-    border-color: silver 3px;
+   /* border-color: silver 3px;*/
+   border: silver 1px solid;
     padding: 15px;
     font-size: 1.5em
 }

@@ -11,6 +11,7 @@ const strike = document.getElementById("strike");
 const gameOverArea = document.getElementById("game-over-area");
 const gameOverText = document.getElementById("game-over-text");
 const playAgain = document.getElementById("play-again");
+playAgain.addEventListener("click", startNewGame);
 
 //sounds
 const gameOverSound = new Audio("sounds/gameover.wav");
@@ -40,6 +41,7 @@ function tileclick(event) {
     if(gameOverArea.classList.contains("visible")) {
         return;
     }
+
     const tile = event.target;
     const tileNuber = tile.dataset.index;
     if(tile.innerText !="") {
@@ -63,6 +65,7 @@ function tileclick(event) {
 }
 
 function checkWinner(){
+    //Check for a Winner
     for(const winningCombination of winningCombinations){
         //object Destructuring
         const {combo, strikeClass} = winningCombination;
@@ -72,19 +75,35 @@ function checkWinner(){
 
         if(tileValue1 != null && tileValue1 === tileValue2 && tileValue2 === tileValue3){
             strike.classList.add(strikeClass);
-            gameOverArea(tileValue1);
+            gameOverScreen(tileValue1);
+            return;
         } 
     }
+
     //Check for draw
     const allTileFilledIn = boardState.every((tile)=> tile !== null);
     if (allTileFilledIn) {
-        gameOverArea(null);
+        gameOverScreen(null);
     }
 }
 //check for draw
-const allTileFilledIn = boardState.every((tile) => tile !== null);9
+function gameOverScreen(winnerText) {
+    let text = "Draw!";
+    if(winnerText != null) {
+        text = `Winner is ${winnerText}!`;
+    }
+    gameOverArea.className = "visible";
+    gameOverText.innerText = text;
+    gameOverSound.play();
+}
 
-
+function startNewGame() {
+    strike.className = "strike";
+    gameOverArea.className = "hidden";
+    boardState.fill(null);
+    tile.forEach((tiles) => (tiles.innerText = ""));
+    setHoverText();
+}
 
 const winningCombinations = [
     {combo:[1,2,3], strikeClass: "strike-row-1"},
